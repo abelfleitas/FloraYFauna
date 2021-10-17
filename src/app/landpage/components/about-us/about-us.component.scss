@@ -1,0 +1,33 @@
+ol.list-ueb {
+    list-style: none;
+    > li {
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        font-weight: bold;
+        font-size: 18px;
+        > ul {
+            list-style: circle;
+            margin-left: 1rem;
+            > li {
+            font-size: 15px;
+            font-weight: 600;
+                > p {
+                    font-weight: normal;
+                    margin-top: 4px;
+                    text-align: justify;
+                } > div {
+                      padding: 5px;  
+                      > span.bagde {
+                          font-size: 18px;
+                      } 
+                      > ul {
+                           list-style: round($number: 0); > li {
+                               font-weight: normal;
+                           }
+                        }
+                    }
+            }
+        }
+    }
+}
+

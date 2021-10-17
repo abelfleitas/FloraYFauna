@@ -1,0 +1,13 @@
+.card img {
+    top: 50%;
+    left: 50%; 
+    padding: 10% 10%;
+    width: 70%;
+}
+.masonry{
+    padding: 0 !important;
+}
+.masonry-item { 
+    max-width: 370px;
+    transition: top 0.4s ease-in-out, left 0.4s ease-in-out;
+}

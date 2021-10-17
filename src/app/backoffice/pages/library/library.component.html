@@ -1,0 +1,79 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 mb-3">
+                <a [routerLink]="['add']" [routerLinkActive]="['active']"  class="btn btn-primary ml-3">Nuevo Documento</a>
+                <button type="button" (click)="deleteDocument()" [disabled]="selected.length === 0" class="btn btn-danger ml-3 ">
+                    <span
+                        *ngIf="isLoading"
+                        class="spinner-border spinner-border-sm ml-2"
+                        role="status"
+                        aria-hidden="true">
+                    </span>
+                    Eliminar Documento
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <ngx-datatable
+                    class="bootstrap"
+                    [rows]="documents"
+                    [columnMode]="ColumnMode.force"
+                    [headerHeight]="50"
+                    [footerHeight]="50"
+                    [rowHeight]="'auto'"
+                    [limit]="5"
+                    [selected]="selected"
+                    [selectionType]="SelectionType.single"
+                    (select)="onSelect($event)">
+                    
+                    <ngx-datatable-column
+                        [width]="30"
+                        [sortable]="false"
+                        [canAutoResize]="false"
+                        [draggable]="false"
+                        [resizeable]="false">
+                        <ng-template
+                            ngx-datatable-cell-template
+                            let-value="value"
+                            let-isSelected="isSelected"
+                            let-onCheckboxChangeFn="onCheckboxChangeFn">
+                            <input type="checkbox" [checked]="isSelected" (change)="onCheckboxChangeFn($event)" />
+                        </ng-template>
+                    </ngx-datatable-column>
+                    
+                    <ngx-datatable-column name="Nombre">
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            {{ row.title }}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Descripción">
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            {{ row.description }}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Formato del Documento">
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            <div *ngIf="row.mimeType === 'application/pdf'; else imgWord">
+                                <fa-icon [icon]="faPDF" size="2x"></fa-icon>
+                            </div>
+                              <ng-template #imgWord>
+                                <fa-icon [icon]="faWord" size="2x"></fa-icon> 
+                             </ng-template>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Fecha de Subida">
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            {{ row.metadata.createdAt | date}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                </ngx-datatable>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
