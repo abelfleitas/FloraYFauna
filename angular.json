@@ -27,8 +27,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "allowedCommonJsDependencies": [
-              "ngx-masonry",
-              "masonry-layout"
+              "ngx-masonry"
             ],
             "assets": [
               "src/favicon.ico",
